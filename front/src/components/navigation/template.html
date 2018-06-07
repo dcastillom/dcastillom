@@ -1,0 +1,7 @@
+<div class="navigation">
+  <ul>
+    <li v-for="(section, code) in lang('sections')" @click="setActiveSection(code)" :class="{ active: activeSection == code }" >
+      <span :class="code">{{ section }}</span>
+    </li>
+  </ul>
+</div>

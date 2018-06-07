@@ -1,0 +1,53 @@
+.navigation
+  display inline-block
+  line-height 80px
+  background color-soft-grey
+  box-sizing border-box
+  width 100%
+  font-size font-small
+  ul
+    display table
+    color color-dark-grey
+    padding 0
+    margin auto
+    li
+      position relative
+      display table-cell
+      cursor pointer
+      padding .75em
+      span
+        &:before
+          top 20px
+          line-height initial
+          position absolute
+          font-family FontAwesome
+          margin auto
+          text-align center
+          left 0
+          right 0
+        &.introduction
+          &:before
+            content "\f2c0"
+        &.experience
+          &:before
+            content "\f1da"
+        &.education
+          &:before
+            content "\f19d"
+        &.skills
+          &:before
+            content "\f085"
+        &.interests
+          &:before
+            content "\f004"
+        &.contact
+          &:before
+            content "\f1d8"
+        &.download
+          &:before
+            content "\f019"
+      &.active
+        color color-blue
+  .my-icon
+    fa(user)
+    font-size 100px

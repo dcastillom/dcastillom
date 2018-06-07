@@ -1,0 +1,20 @@
+<div class="section contact">
+  <h1>{{ lang('sections.contact') }}</h1>
+  <ul>
+    <li>
+      <span class="email"></span>
+      <span>{{ lang('email') }}</span>
+      <a :href="emailLink">{{ lang('contact.email') }}</a>
+    </li>
+    <li>
+      <span class="phone"></span>
+      <span>{{ lang('phone') }}</span>
+      <a :href="phoneLink">{{ lang('contact.phone') }}</a>
+    </li>
+    <li v-for="(link,code) in lang('contact.social')" :class="code">
+      <span :class="code"></span>
+      <span>{{ code }}</span>
+      <a :href="link" target="_blank">{{ link }}</a>
+    </li>
+  </ul>
+</div>

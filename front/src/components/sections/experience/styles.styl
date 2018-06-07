@@ -1,0 +1,28 @@
+.experience
+  ul
+    display block!important
+    border-left .3em solid color-blue
+    padding-left 1em
+    li
+      display block
+      margin-bottom 1.4em
+      span
+        display block
+        &.position
+          font-weight bold
+          position relative
+          &:before
+            top -2px
+            left -1.24em
+            position absolute
+            font-family FontAwesome
+            content "\F111"
+            font-size 23px
+            color color-blue
+        &.years
+          margin-bottom .5em
+      .link
+        font-size font-small
+        text-decoration none
+        margin-right 7px
+        color color-blue

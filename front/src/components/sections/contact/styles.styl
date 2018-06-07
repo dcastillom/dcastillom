@@ -1,0 +1,33 @@
+.contact
+  ul
+    max-width 275px
+    right 0
+    left 0
+    margin auto
+    li
+      display block
+      margin-bottom 1.5em
+      position relative
+      span
+        display block
+        &:first-of-type
+          position absolute
+          top 0
+          left -4em
+          &:before
+            font-family FontAwesome
+            content ""
+            display inline-block
+            font-size 30px
+          &.email
+            &:before
+              content "\f003"    
+          &.phone
+            &:before
+              content "\f095"
+          &.linkedin
+            &:before
+              content "\f0e1"    
+          &.github
+            &:before
+              content "\f09b"  

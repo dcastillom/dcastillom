@@ -1,0 +1,63 @@
+{
+  "langs": {
+    "es": "ES",
+    "en": "EN"
+  },
+  "home": "Home",
+  "phone": "Phone",
+  "email": "Email",
+  "sections": {
+    "introduction": "Introduction",
+    "experience": "Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "interests": "Interests",
+    "contact": "Contact",
+    "download": "Download my CV"
+  },
+  "experiences": [
+    { 
+      "position": "Frontend Developer",
+      "company": "Liquid Squad",
+      "years": "sep.2014-actualidad",
+      "description": "Desarrollo front de aplicaciones web responsives basadas en HTML5, CSS3, VueJS y AngularJS.",
+      "links": {
+        "#liquidsquad": "https://liquid.delivery/",
+        "#pangea": "https://www.pangea.es/",
+        "#aireuropa": "https://www.aireuropa.com/es/vuelos"
+      }
+    },{ 
+      "position": "Desarrollador Web",
+      "company": "Hypernova Digital",
+      "years": "nov.2014-sep.2014",
+      "description": "Desarrollo web de aplicaciones basadas en Ruby on Rails.",
+      "links": {
+        "#hypernovadigital": "https://www.linkedin.com/company/3221949/"
+      }
+    },{ 
+      "position": "Maquetador Freelance",
+      "company": "Nubelo",
+      "years": "jun.2010-sep.2014",
+      "description": "Maquetación y desarrollo web freelance de aplicaciones basadas en HTML5, JavaScript y CSS3.",
+      "links": {
+        "#nubelo": "https://www.freelancer.es/nubelo"
+      }
+    },{ 
+      "position": "Consultor de Negocio",
+      "company": "Panel Sistemas",
+      "years": "nov.2013-feb.2014",
+      "description": "Control y normalización de datos en diferentes sistemas y aplicaciones de producción de Telefónica en los procesos de tramitación, seguimiento y conclusión de pedidos. Análisis y resolución de incidencia.",
+      "links": {
+        "#nubelo": "https://www.freelancer.es/nubelo"
+      }
+    }
+  ],
+  "contact": {
+    "email": "danielcastillomarfull@gmail.com",
+    "phone": "+34 609 835 253",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/danielcastillomarfull/",
+      "github": "https://github.com/dcastillom"
+    }
+  }
+}

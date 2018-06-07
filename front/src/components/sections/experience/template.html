@@ -1,0 +1,12 @@
+<div class="section experience">
+  <h1>{{ lang('sections.experience') }}</h1>
+  <ul>
+    <li v-for="(experience, code) in lang('experiences')">
+      <span class="position">{{ experience.position }}</span>
+      <span class="company">{{ experience.company }}</span>
+      <span class="years">{{ experience.years }}</span>
+      <span class="description">{{ experience.description }}</span>
+      <a :href="link" class="link" v-for="(link, hash) in experience.links" target="_blank">{{ hash }}</a>
+    </li>
+  </ul>
+</div>

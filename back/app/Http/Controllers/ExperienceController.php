@@ -8,10 +8,13 @@ use Illuminate\Http\Request;
 class ExperienceController extends Controller
 {
 
-
-    public function index()
+    public function index(Request $request)
     {
-        return Experience::all();
+       if ($request->is('experiences')) {
+          return view('experiences_list', ['experiences' => Experience::all()]);
+       } else {
+          return Experience::all();
+       }
     }
 
     public function show(Experience $id)
@@ -40,10 +43,16 @@ class ExperienceController extends Controller
         return response()->json($$id, 200);
     }
 
-    public function delete(Experience $id)
+    public function delete(Experience $id, Request $request)
     {
+
         $id->delete();
 
-        return response()->json(null, 204);
+       if ($request->is('experiences/*')) {
+            return redirect('/experiences');
+       } else {
+            return response()->json(null, 204);
+       }
+
     }
 }

@@ -21,13 +21,12 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Experience::class, function (Faker $faker) {
     return [
-        'id' => $faker->unique('randomElement', array(1,2,3,4,5,6,7,8,9,10));
+        'id' => $faker->unique()->randomDigit,
         'position' => $faker->sentence,
         'company' => $faker->sentence,
         'start' => $faker->dateTime,
         'end' => $faker->dateTime,
         'description' => $faker->realText($maxNbChars = 200, $indexSize = 2),
-        'position' => $faker->sentence,
         'links' => $faker->url, 
     ];
 });

@@ -59,6 +59,10 @@
                 text-transform: uppercase;
             }
 
+            .warning {
+                color: red;
+            }
+
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -72,19 +76,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
-                  @if(Auth::check())
                     <ul>
-                        <li><a href="/experiences">Experiences</a></li>
+                    @foreach($experiences as $experience)
+                        <li>
+                            <a href="/">{{ $experience['company'] }} - {{ $experience['position'] }}</a>
+                            <a href="{{route('experience.delete', $experience->id)}}?{{time()}}" class="warning">Remove item</a> 
+                        </li>
+                    @endforeach
                     </ul>
-
-                    @endif
-                    @if(Auth::guest())
-                      <a href="/login" class="btn btn-info"> Please, login</a>
-                    @endif
                 </div>
             </div>
         </div>
         @endsection
 
+  
     </body>
 </html>

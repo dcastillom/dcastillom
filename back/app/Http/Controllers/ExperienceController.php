@@ -1,8 +1,11 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Experience;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 
 class ExperienceController extends Controller
@@ -10,11 +13,13 @@ class ExperienceController extends Controller
 
     public function index(Request $request)
     {
-       if ($request->is('experiences')) {
-          return view('experiences_list', ['experiences' => Experience::all()]);
-       } else {
-          return Experience::all();
-       }
+        if ($request->is('experiences')) {
+
+            // return view('experiences/index', ['experiences' => DB::table('experiences')->paginate(15)]);
+            return view('experiences/index', ['experiences' => Experience::all()]);
+        } else {
+            return Experience::all();
+        }
     }
 
     public function show(Experience $id)

@@ -59,10 +59,6 @@
                 text-transform: uppercase;
             }
 
-            .warning {
-                color: red;
-            }
-
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -74,18 +70,47 @@
 
         @section('content')
         <div class="container">
+<!--             <div class="row">
+                <div class="col-md-offset-1">
+                    <a class="btn btn-default" href="{{ route('password.request') }}">
+                        Add an experience
+                    </a>
+                </div>
+            </div> -->
+
+
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
-                    <ul>
+
+
                     @foreach($experiences as $experience)
-                        <li>
-                            <a href="/">{{ $experience['company'] }} - {{ $experience['position'] }}</a>
-                            <a href="{{route('experience.delete', $experience->id)}}?{{time()}}" class="warning">Remove item</a> 
-                        </li>
+                    <div class="panel panel-default col-md-4">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">{{ substr($experience['position'], 0, 20) }}...</h3>
+                        <a class="" href="{{route('experience.delete', $experience->id)}}?{{time()}}">
+                            Remove item
+                        </a>
+                      </div>
+                      <div class="panel-body">
+                        <p>{{ substr($experience['company'], 0, 20) }}...</p>
+                        <p>
+                            {{ date('F Y', strtotime($experience->start)) }}
+                            <span>-<span>
+                            {{ date('F Y', strtotime($experience->end)) }}
+                        </p>
+                        <p>{{ substr($experience['description'], 0, 70) }}...</p>
+                        <a class="btn btn-default btn-block" href="{{route('experience.delete', $experience->id)}}?{{time()}}">
+                            Edit item
+                        </a>
+                      </div>
+                    </div>
                     @endforeach
-                    </ul>
+
                 </div>
             </div>
+
+
+
         </div>
         @endsection
 

@@ -6,6 +6,7 @@ use App\Experience;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
 
 
 class ExperienceController extends Controller
@@ -14,16 +15,21 @@ class ExperienceController extends Controller
     public function index(Request $request)
     {
         if ($request->is('experiences')) {
-
-            // return view('experiences/index', ['experiences' => DB::table('experiences')->paginate(15)]);
-            return view('experiences/index', ['experiences' => Experience::all()]);
-        } else {
-            return Experience::all();
-        }
+            $experiences =  DB::table('experiences')->orderBy('start', 'asc')->paginate(6);
+            return view('experiences/index',['experiences'=>$experiences]);
+        } 
+        
+        return Experience::all();
     }
 
-    public function show(Experience $id)
+    public function show(Experience $id, Request $request)
     {
+        //if ($request->is('experiences')) {
+            return view('experiences/show',['experience'=>Experience::find($id)->first()]);
+        // }
+
+        $experiences = $collection->keyBy('id');
+
         return Experience::find($id);
     }
 

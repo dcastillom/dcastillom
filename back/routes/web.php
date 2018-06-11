@@ -40,3 +40,8 @@ Route::get('/experiences/{id}/update', ['uses' => 'ExperienceController@update',
 
 
 Route::get('/experiences', ['uses' => 'ExperienceController@index', 'as' => 'experiences']);
+
+
+// Route::get('/experiences.new', function () {
+//     return view('experiences/new');
+// });

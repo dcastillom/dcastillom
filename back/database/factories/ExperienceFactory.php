@@ -28,5 +28,6 @@ $factory->define(App\Experience::class, function (Faker $faker) {
         'end' => $faker->dateTime,
         'description' => $faker->realText($maxNbChars = 200, $indexSize = 2),
         'links' => $faker->url, 
+        'lang' => $faker->randomElement(['es', 'en'])
     ];
 });

@@ -42,7 +42,13 @@ class ExperienceController extends Controller
             'links' => '',
         ]);
 
-        return Experience::create($experience);
+
+        if ($request->is('experiences/*')) {
+            Experience::create($experience);
+            return redirect('/experiences');
+        } else {
+            return Experience::create($experience);
+        }
     }
 
     public function update(Request $request, Experience $id)

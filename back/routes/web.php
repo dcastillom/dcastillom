@@ -38,10 +38,10 @@ Route::get('/experiences/{id}/show', ['uses' => 'ExperienceController@show', 'as
 
 Route::get('/experiences/{id}/update', ['uses' => 'ExperienceController@update', 'as' => 'experience.update']);
 
-
 Route::get('/experiences', ['uses' => 'ExperienceController@index', 'as' => 'experiences']);
 
+Route::get('/experiences/new', function () {
+    return view('/experiences/new');
+});
 
-// Route::get('/experiences.new', function () {
-//     return view('experiences/new');
-// });
+Route::post('/experiences/store', ['uses' => 'ExperienceController@store', 'as' => 'experience.store']);

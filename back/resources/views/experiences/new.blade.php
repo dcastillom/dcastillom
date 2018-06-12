@@ -10,13 +10,13 @@
 
                 <div class="panel-body">
 
-                    <form class="form-horizontal" method="PUT" action="">
+                    <form class="form-horizontal" method="POST" action="{{route('experience.store')}}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
                             <label for="position" class="col-md-2 control-label">Position</label>
                             <div class="col-md-4">
-                                <input id="position" type="text" class="form-control" name="position" required autofocus>
+                                <input id="position" type="text" class="form-control" name="position" value="" required autofocus>
                                 @if ($errors->has('position'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('position') }}</strong>
@@ -28,7 +28,7 @@
                         <div class="form-group{{ $errors->has('start') ? ' has-error' : '' }}">
                             <label for="start" class="col-md-2 control-label">Start</label>
                             <div class="col-md-2">
-                                <input id="start" type="text" class="form-control datepicker" name="start" required autofocus>
+                                <input id="start" type="text" class="form-control datepicker" name="start" value="" required autofocus>
                                 @if ($errors->has('start'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('start') }}</strong>
@@ -40,7 +40,7 @@
                         <div class="form-group{{ $errors->has('end') ? ' has-error' : '' }}">
                             <label for="end" class="col-md-2 control-label">End</label>
                             <div class="col-md-2">
-                                <input id="end" type="text" class="form-control datepicker" name="end" required autofocus>
+                                <input id="end" type="text" class="form-control datepicker" name="end" value="" required autofocus>
                                 @if ($errors->has('end'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('end') }}</strong>
@@ -52,7 +52,7 @@
                         <div class="form-group{{ $errors->has('company') ? ' has-error' : '' }}">
                             <label for="company" class="col-md-2 control-label">Company</label>
                             <div class="col-md-4">
-                                <input id="company" type="text" class="form-control" name="company" required autofocus>
+                                <input id="company" type="text" class="form-control" name="company" value="" required autofocus>
                                 @if ($errors->has('company'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('company') }}</strong>
@@ -92,7 +92,7 @@
                                     Go back
                                 </a>
                                 <button type="submit" class="btn btn-primary">
-                                    Create
+                                    Save
                                 </button>
                             </div>
                         </div>

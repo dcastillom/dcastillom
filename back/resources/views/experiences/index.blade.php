@@ -3,9 +3,16 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="container">
                 <p>{{ $experiences->links() }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container">
+                <p><a class="btn btn-default" href="{{ url('/experiences/new') }}">Add new experience</a></p>
             </div>
         </div>
     </div>

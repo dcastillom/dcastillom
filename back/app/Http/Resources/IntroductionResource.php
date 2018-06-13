@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
 
-class ExperienceResource extends Resource
+class IntroductionResource extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -16,13 +16,9 @@ class ExperienceResource extends Resource
     {
         return [
             'id' => $this->id,
-            'position' => $this->position,
-            'company' => $this->company,
-            'start' => $this->start->diffForHumans(),
-            'end' => $this->end->diffForHumans(),
-            'description' => $this->description,
-            'position' => $this->position,
-            'links' => $this->links,
+            'greeting' => $this->greeting,
+            'intro' => $this->intro,
+            'avatar' => $this->avatar,
             'lang' => $this->lang
         ];
     }

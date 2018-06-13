@@ -15,18 +15,15 @@ use Faker\Generator as Faker;
 
 // para rellenar la tabla Experience:
 // php artisan tinker
-// factory(App\Experience::class, 1)->create();
+// factory(App\Introduction::class, 1)->create();
 // sqlite3 ex1
 
-$factory->define(App\Experience::class, function (Faker $faker) {
+$factory->define(App\Introduction::class, function (Faker $faker) {
     return [
         'id' => $faker->unique()->randomDigit,
-        'position' => $faker->sentence,
-        'company' => $faker->sentence,
-        'start' => $faker->dateTime,
-        'end' => $faker->dateTime,
-        'description' => $faker->realText($maxNbChars = 200, $indexSize = 2),
-        'links' => $faker->url, 
+        'greeting' => $faker->sentence,
+        'intro' => $faker->sentence,
+        'avatar' => $faker->imageUrl($width = 640, $height = 480),
         'lang' => $faker->randomElement(['es', 'en'])
     ];
 });

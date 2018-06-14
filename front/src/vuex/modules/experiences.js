@@ -14,12 +14,6 @@ export const getters = {
   }
 }
 
-export const gettersssssss = {
-  getLanguage: () => {
-    return state.language
-  }
-}
-
 export const mutations = {
   [SET_EXPERIENCES](state, data) {
      state.experiences = data;

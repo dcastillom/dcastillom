@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const nodeEnv = process.env.NODE_ENV
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 const plugins = [
@@ -9,6 +10,12 @@ const plugins = [
     'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
   }),
   new ExtractTextPlugin('[name].css'),
+  new CopyWebpackPlugin([
+    { 
+      from: './src/static',
+      to: 'imgs' 
+    }
+  ])
 ]
 
 if (nodeEnv === 'pro') {
@@ -45,6 +52,10 @@ module.exports = {
       {
         test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
         use: 'file-loader'
+      },
+      { 
+        test: /\.(jpe?g|gif|png|svg|woff|ttf|wav|mp3)$/, 
+        loader: "file-loader"
       }
     ]
   },

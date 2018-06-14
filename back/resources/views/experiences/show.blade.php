@@ -13,6 +13,21 @@
                     <form class="form-horizontal" method="PUT" action="{{route('experience.update', $experience->id)}}">
                         {{ csrf_field() }}
 
+                        <div class="form-group{{ $errors->has('lang') ? ' has-error' : '' }}">
+                            <label for="lang" class="col-md-2 control-label">Lang</label>
+                            <div class="col-md-2">
+                                <select id="lang" class="form-control" name="lang" >
+                                    <option value="en"<?php if($experience->lang == 'en'): ?> selected="selected"<?php endif; ?>>EN</option>
+                                    <option value="es"<?php if($experience->lang == 'es'): ?> selected="selected"<?php endif; ?>>ES</option>
+                                </select>
+                                @if ($errors->has('lang'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('lang') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
                             <label for="position" class="col-md-2 control-label">Position</label>
                             <div class="col-md-4">

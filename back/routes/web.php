@@ -32,6 +32,10 @@ Route::get('/auth0/callback', function() {
 Route::any('/auth/register','HomeController@index');
 
 Route::get('/experiences', 'ExperienceController@index');
+
+Route::get('/experiences/{lang?}', 'ExperienceController@filter');
+
+
 Route::get('/experiences/{id}/delete', ['uses' => 'ExperienceController@delete', 'as' => 'experience.delete']);
 
 Route::get('/experiences/{id}/show', ['uses' => 'ExperienceController@show', 'as' => 'experience.show']);

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Query\Builder;
 
 
 class ExperienceController extends Controller
@@ -15,11 +16,27 @@ class ExperienceController extends Controller
     public function index(Request $request)
     {
         if ($request->is('experiences')) {
-            $experiences =  DB::table('experiences')->orderBy('start', 'asc')->paginate(5);
-            return view('experiences/index',['experiences'=>$experiences]);
+            $experiences =  DB::table('experiences')->orderBy('lang', 'des')->orderBy('start', 'des')->paginate(5);
+
+            $langs = Experience::select('lang')->get()->pluck('lang')->unique();
+
+            return view('experiences/index',['experiences'=>$experiences, 'langs' => $langs]);
         } 
         
         return Experience::all();
+    }
+
+    public function filter($lang){
+
+        if (empty($lang)) {
+            return redirect('/experiences');
+        }
+
+        $experiences = DB::table('experiences')->where('lang', $lang)->orderBy('start', 'des')->paginate(5);;
+
+        $langs = Experience::select('lang')->get()->pluck('lang')->unique();
+    
+        return view('experiences/index',['experiences'=>$experiences, 'lang' => $lang, 'langs' => $langs]);
     }
 
     public function show(Experience $id, Request $request)
@@ -34,9 +51,10 @@ class ExperienceController extends Controller
     public function store(Request $request)
     {
         $experience = $this->validate($request, [
+            'lang' => 'required',
             'company' => 'required',
-            'start' => 'required|date',
-            'end' => 'required|date|after:start',
+            'start' => 'required',
+            'end' => 'required',
             'description' => 'required',
             'position' => 'required',
             'links' => '',

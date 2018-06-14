@@ -9,22 +9,35 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="container">
-                <p><a class="btn btn-default" href="{{ url('/experiences/new') }}">Add new experience</a></p>
-            </div>
-        </div>
-    </div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="container">
 
             <ul class="list-group">
-                <li class="list-group-item list-group-item-primary">Experiences</li>
+                <li class="list-group-item list-group-item-primary">
+                    <!-- <span>Experiences</span> -->
+
+                <div class="btn-group" role="group" aria-label="...">
+                    <p>Experiences</p>
+                    <a class="btn btn-default" href="{{ url('/experiences/new') }}">Add new experience</a>
+                    <div class="btn-group" role="group">
+      
+                        <select class="form-control" onchange="filter(this.value)">
+                            <option>Language</option>
+                            <option  value="">all</option>
+                            @foreach ($langs as $key=>$value)
+                            <option>{{ $value}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                </li>
                 @foreach($experiences as $experience)
                 <li class="list-group-item list-group-item-primary">
-                    <p>
+                    <p> 
+                        <span class="label label-info">{{ $experience->lang }}</span><br>
                         {{ $experience->position }}<br>
                         {{ date('F Y', strtotime($experience->start)) }}&nbsp;-&nbsp;{{ date('F Y', strtotime($experience->end)) }}<br>
                         {{ $experience->company }}<br>
@@ -44,3 +57,10 @@
     </div>
 </div>
 @endsection
+
+<script>
+    function filter(lang) {
+
+        window.location.href = "/experiences/" + lang;
+    }
+</script>

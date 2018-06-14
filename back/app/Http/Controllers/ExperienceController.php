@@ -18,9 +18,10 @@ class ExperienceController extends Controller
         if ($request->is('experiences')) {
             $experiences =  DB::table('experiences')->orderBy('lang', 'des')->orderBy('start', 'des')->paginate(5);
 
+            $lang = 'all';
             $langs = Experience::select('lang')->get()->pluck('lang')->unique();
 
-            return view('experiences/index',['experiences'=>$experiences, 'langs' => $langs]);
+            return view('experiences/index',['experiences'=>$experiences, 'lang' => $lang, 'langs' => $langs]);
         } 
         
         return Experience::all();
@@ -28,7 +29,7 @@ class ExperienceController extends Controller
 
     public function filter($lang){
 
-        if (empty($lang)) {
+        if ($lang === 'all' ) {
             return redirect('/experiences');
         }
 

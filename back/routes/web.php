@@ -33,8 +33,7 @@ Route::any('/auth/register','HomeController@index');
 
 Route::get('/experiences', 'ExperienceController@index');
 
-Route::get('/experiences/{lang?}', 'ExperienceController@filter');
-
+Route::get('/experiences/filter/{lang?}', 'ExperienceController@filter');
 
 Route::get('/experiences/{id}/delete', ['uses' => 'ExperienceController@delete', 'as' => 'experience.delete']);
 
@@ -47,5 +46,6 @@ Route::get('/experiences', ['uses' => 'ExperienceController@index', 'as' => 'exp
 Route::get('/experiences/new', function () {
     return view('/experiences/new');
 });
+
 
 Route::post('/experiences/store', ['uses' => 'ExperienceController@store', 'as' => 'experience.store']);

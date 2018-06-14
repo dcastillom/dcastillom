@@ -24,10 +24,9 @@
                     <div class="btn-group" role="group">
       
                         <select class="form-control" onchange="filter(this.value)">
-                            <option>Language</option>
-                            <option  value="">all</option>
+                            <option value="all">Show all</option>
                             @foreach ($langs as $key=>$value)
-                            <option>{{ $value}}</option>
+                            <option @if ($value == $lang) selected="selected" @endif> {{ $value }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -61,6 +60,6 @@
 <script>
     function filter(lang) {
 
-        window.location.href = "/experiences/" + lang;
+        window.location.href = "/experiences/filter/" + lang;
     }
 </script>

@@ -2,6 +2,9 @@ export default {
   computed: {
     language() {
       return this.$store.getters.getLanguage
+    },
+    languages() {
+      return this.$store.getters.getLanguages
     }
   },
   methods: {
@@ -9,6 +12,7 @@ export default {
       this.$store.commit('SET_ACTIVE_SECTION', 'home')
     },
     setLanguage(lang) {
+      console.log('lang', lang)
       this.$store.commit('SET_LANGUAGE', lang)
     }
   }

@@ -1,8 +1,8 @@
 <div class="top">
   <span class="name" @click="goToHome()">{{ lang('home') }}</span>
   <ul class="lang-selector">
-    <li v-for="(lang, code) in lang('langs')" @click="setLanguage(code)" :class="{ active: language === code }">
-      {{ lang }}
+    <li v-for="lang in languages" @click="setLanguage(lang.lang)" :class="{ active: language == lang.lang }">
+      {{ lang.lang }}
     </li>
   </ul>
 </div>

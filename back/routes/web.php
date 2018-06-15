@@ -38,9 +38,16 @@ Route::get('/languages/{id}/show', ['uses' => 'LanguageController@show', 'as' =>
 Route::get('/languages/{id}/update', ['uses' => 'LanguageController@update', 'as' => 'language.update']);
 Route::get('/languages', ['uses' => 'LanguageController@index', 'as' => 'languages']);
 Route::post('/languages/store', ['uses' => 'LanguageController@store', 'as' => 'language.store']);
-Route::get('/languages/new', function () {
-    return view('/languages/new');
-});
+Route::get('/languages/create', ['uses' => 'LanguageController@create', 'as' => 'language.create']);
+
+Route::get('/introductions', 'IntroductionController@index');
+Route::get('/introductions/filter/{lang?}', 'IntroductionController@filter');
+Route::get('/introductions/{id}/delete', ['uses' => 'IntroductionController@delete', 'as' => 'introduction.delete']);
+Route::get('/introductions/{id}/show', ['uses' => 'IntroductionController@show', 'as' => 'introduction.show']);
+Route::get('/introductions/{id}/update', ['uses' => 'IntroductionController@update', 'as' => 'introduction.update']);
+Route::get('/introductions', ['uses' => 'IntroductionController@index', 'as' => 'introductions']);
+Route::post('/introductions/store', ['uses' => 'IntroductionController@store', 'as' => 'introduction.store']);
+Route::get('/introductions/create', ['uses' => 'IntroductionController@create', 'as' => 'introduction.create']);
 
 Route::get('/experiences', 'ExperienceController@index');
 Route::get('/experiences/filter/{lang?}', 'ExperienceController@filter');
@@ -49,6 +56,4 @@ Route::get('/experiences/{id}/show', ['uses' => 'ExperienceController@show', 'as
 Route::get('/experiences/{id}/update', ['uses' => 'ExperienceController@update', 'as' => 'experience.update']);
 Route::get('/experiences', ['uses' => 'ExperienceController@index', 'as' => 'experiences']);
 Route::post('/experiences/store', ['uses' => 'ExperienceController@store', 'as' => 'experience.store']);
-Route::get('/experiences/new', function () {
-    return view('/experiences/new');
-});
+Route::get('/experiences/create', ['uses' => 'ExperienceController@create', 'as' => 'experience.create']);

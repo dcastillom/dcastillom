@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="container">
-                <p>{{ $experiences->links() }}</p>
+                <p>{{ $introductions->links() }}</p>
             </div>
         </div>
     </div>
@@ -16,11 +16,11 @@
 
             <ul class="list-group">
                 <li class="list-group-item list-group-item-primary">
-                    <!-- <span>Experiences</span> -->
+                    <!-- <span>introductions</span> -->
 
                 <div class="btn-group" role="group" aria-label="...">
-                    <p>Experiences</p>
-                    <a class="btn btn-default" href="{{route('experience.create')}}">Add new experience</a>
+                    <p>Introductions</p>
+                    <a class="btn btn-default" href="{{route('introduction.create')}}">Add new introduction</a>
                     <div class="btn-group" role="group">
       
                         <select class="form-control" onchange="filter(this.value)">
@@ -33,18 +33,15 @@
                 </div>
 
                 </li>
-                @foreach($experiences as $experience)
+                @foreach($introductions as $introduction)
                 <li class="list-group-item list-group-item-primary">
                     <p> 
-                        {{ $experience->position }}<br>
-                        {{ date('F Y', strtotime($experience->start)) }}&nbsp;-&nbsp;{{ date('F Y', strtotime($experience->end)) }}<br>
-                        {{ $experience->company }}<br>
-                        {{ $experience->description }}<br>
-                        {{ $experience->links }}<br>
+                        {{ $introduction->greeting }}<br>
+                        {{ $introduction->intro }}<br>
                     </p>
                     <p>
-                        <a class="btn btn-danger" href="{{route('experience.delete', $experience->id)}}">Remove item</a>
-                        <a class="btn btn-default" href="{{route('experience.show', $experience->id)}}">Edit item</a>
+                        <a class="btn btn-danger" href="{{route('introduction.delete', $introduction->id)}}">Remove item</a>
+                        <a class="btn btn-default" href="{{route('introduction.show', $introduction->id)}}">Edit item</a>
                     </p>
                 </li>
                 @endforeach
@@ -59,6 +56,6 @@
 <script>
     function filter(lang) {
 
-        window.location.href = "/experiences/filter/" + lang;
+        window.location.href = "/introductions/filter/" + lang;
     }
 </script>

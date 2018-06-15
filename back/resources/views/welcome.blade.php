@@ -74,6 +74,7 @@
                 <div class="col-md-10 col-md-offset-1">
                   @if(Auth::check())
                     <ul>
+                        <li><a href="/introductions">Introductions</a></li>
                         <li><a href="/languages">Languages</a></li>
                         <li><a href="/experiences">Experiences</a></li>
                     </ul>

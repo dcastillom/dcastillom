@@ -2,95 +2,97 @@
 
 namespace App\Http\Controllers;
 
+use App\Language;
 use App\Introduction;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Query\Builder;
 
 
 class IntroductionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $langs;
+
+    public function __construct()
+    {
+        $this->langs = DB::table('languages')->get()->pluck('lang')->unique();
+    }
+
     public function index(Request $request)
     {
-        {
-            if ($request->is('introductions')) {
-                $introductions =  DB::table('introductions')->orderBy('start', 'asc')->paginate(5);
-                return view('introductions/index',['introductions'=>$experiences]);
-            } 
-            
-            return Introduction::all();
+
+        if ($request->is('introductions')) {
+            $introductions =  DB::table('introductions')->orderBy('lang', 'des')->orderBy('start', 'des')->paginate(5);
+            return view('introductions/index',['introductions'=>$introductions, 'lang' => 'all', 'langs' => $this->langs]);
+        } 
+        
+        return Introduction::all();
+    }
+
+    public function filter($lang){
+
+        if ($lang === 'all' ) {
+            return redirect('/introductions');
+        }
+
+        $introductions = DB::table('introductions')->where('lang', $lang)->orderBy('start', 'des')->paginate(5);;
+        return view('introductions/index',['introductions'=>$introductions, 'lang' => $lang, 'langs' => $this->langs]);
+    }
+
+    public function show(Experience $id, Request $request)
+    {
+        if ($request->is('introductions/*')) {
+            return view('introductions/show',['experience'=>Introduction::find($id)->first()]);
+        }
+
+        return Introduction::find($id);
+    }
+
+    public function create()
+    {
+        return view('introductions/new',['langs' => $this->langs]);
+    }
+
+    public function store(Request $request)
+    {
+        $experience = $this->validate($request, [
+            'greeting' => 'required',
+            'intro' => 'required',
+            // 'avatar' => 'required',
+            'lang' => 'required'
+        ]);
+
+
+        if ($request->is('introductions/*')) {
+            Introduction::create($experience);
+            return redirect('/introductions');
+        } else {
+            return Introduction::create($experience);
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function update(Request $request, Experience $id)
     {
-        //
+        $id->update($request->all());
+
+        if ($request->is('introductions/*')) {
+            return redirect('/introductions');
+        } else {
+            return response()->json($$id, 200);
+        }
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function delete(Experience $id, Request $request)
     {
-        //
-    }
+        $id->delete();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+       if ($request->is('introductions/*')) {
+            return redirect('/introductions');
+       } else {
+            return response()->json(null, 204);
+       }
     }
 }

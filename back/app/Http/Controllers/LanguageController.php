@@ -11,6 +11,14 @@ use Illuminate\Pagination\Paginator;
 
 class LanguageController extends Controller
 {
+
+    protected $langs;
+
+    public function __construct()
+    {
+        $this->langs = DB::table('languages')->get()->pluck('lang')->unique();
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +44,7 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        //
+        return view('experiences/new',['langs' => $this->langs]);
     }
 
     /**

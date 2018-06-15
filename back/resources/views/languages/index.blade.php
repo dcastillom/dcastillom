@@ -12,7 +12,7 @@
 
                 <div class="btn-group" role="group" aria-label="...">
                     <p>Languages</p>
-                    <a class="btn btn-default" href="{{ url('/languages/new') }}">Add new language</a>
+                    <a class="btn btn-default" href="{{route('language.create')}}">Add new language</a>
                 </div>
 
                 </li>

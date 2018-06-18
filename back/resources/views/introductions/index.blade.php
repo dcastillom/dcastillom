@@ -35,10 +35,11 @@
                 </li>
                 @foreach($introductions as $introduction)
                 <li class="list-group-item list-group-item-primary">
-                    <p> 
-                        {{ $introduction->greeting }}<br>
-                        {{ $introduction->intro }}<br>
-                    </p>
+
+                    <img src=" {{ asset('upload/img'). '/' . $introduction->avatar }} ">
+
+                    <p>{{ $introduction->greeting }}</p>
+                    <p>{{ $introduction->intro }}</p>
                     <p>
                         <a class="btn btn-danger" href="{{route('introduction.delete', $introduction->id)}}">Remove item</a>
                         <a class="btn btn-default" href="{{route('introduction.show', $introduction->id)}}">Edit item</a>

@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Database\Query\Builder;
+use Input;
+use Image;
+use File;
+use Storage;
 
 
 class IntroductionController extends Controller
@@ -23,12 +27,17 @@ class IntroductionController extends Controller
     public function index(Request $request)
     {
 
+        $introductions = Introduction::all()->map(function ($introduction) {
+            $introduction['avatar'] = asset('upload/img') . '/' . $introduction['avatar'];
+            return $introduction;
+        });
+
         if ($request->is('introductions')) {
             $introductions =  DB::table('introductions')->orderBy('lang', 'des')->orderBy('start', 'des')->paginate(5);
             return view('introductions/index',['introductions'=>$introductions, 'lang' => 'all', 'langs' => $this->langs]);
         } 
-        
-        return Introduction::all();
+
+        return $introductions;
     }
 
     public function filter($lang){
@@ -41,7 +50,7 @@ class IntroductionController extends Controller
         return view('introductions/index',['introductions'=>$introductions, 'lang' => $lang, 'langs' => $this->langs]);
     }
 
-    public function show(Experience $id, Request $request)
+    public function show(Introduction $id, Request $request)
     {
         if ($request->is('introductions/*')) {
             return view('introductions/show',['experience'=>Introduction::find($id)->first()]);
@@ -57,23 +66,31 @@ class IntroductionController extends Controller
 
     public function store(Request $request)
     {
-        $experience = $this->validate($request, [
+        $introduction = $this->validate($request, [
             'greeting' => 'required',
             'intro' => 'required',
-            // 'avatar' => 'required',
+            'avatar' => 'required|image',
             'lang' => 'required'
         ]);
 
+        $image = Input::file('avatar');
+        $filename = time() . '.' . $image->getClientOriginalExtension();
+        $path = public_path('upload/img/' . $filename);
+        
+        Image::make($image->getRealPath())->resize(200, 200)->save($path);
+   
+        $introduction['avatar'] = $filename;
 
         if ($request->is('introductions/*')) {
-            Introduction::create($experience);
+            Introduction::create($introduction);
             return redirect('/introductions');
         } else {
-            return Introduction::create($experience);
+            return Introduction::create($introduction);
         }
     }
 
-    public function update(Request $request, Experience $id)
+
+    public function update(Request $request, Introduction $id)
     {
         $id->update($request->all());
 
@@ -85,8 +102,15 @@ class IntroductionController extends Controller
 
     }
 
-    public function delete(Experience $id, Request $request)
+    public function delete(Introduction $id, Request $request)
     {
+        $image = Introduction::find($id)[0]['avatar'];
+        $image_path = public_path('upload/img/' . $image);
+
+        if (File::exists($image_path)) {
+            File::delete($image_path);
+        }
+
         $id->delete();
 
        if ($request->is('introductions/*')) {
@@ -95,4 +119,5 @@ class IntroductionController extends Controller
             return response()->json(null, 204);
        }
     }
+
 }

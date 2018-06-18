@@ -10,7 +10,7 @@
 
                 <div class="panel-body">
 
-                    <form class="form-horizontal" method="POST" action="{{route('experience.store')}}">
+                    <form class="form-horizontal" method="POST" action="{{route('introduction.store')}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('lang') ? ' has-error' : '' }}">
@@ -57,9 +57,7 @@
                             <label for="avatar" class="col-md-2 control-label">Avatar</label>
                             <div class="col-md-10">
                                 
-                            <!-- <textarea id="avatar" type="text" class="form-control" name="avatar" required autofocus></textarea> -->
-                                {!! Form::file('image', array('class' => 'image')) !!}</p>
-                                
+                                <input name="avatar" id="avatar" type="file">
                                 
                                 @if ($errors->has('avatar'))
                                     <span class="help-block">

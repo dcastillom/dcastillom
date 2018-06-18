@@ -3,9 +3,12 @@ export default {
     introductions() {
       return this.$store.getters.getIntroductions[0] || []
     },
+    // avatar() {
+    //   let dbImg = this.introductions.avatar
+    //   return !!dbImg ? 'data:image/gif;base64,' + dbImg : '/_build/imgs/avatar.jpg'
+    // },
     avatar() {
-      let dbImg = this.introductions.avatar
-      return !!dbImg ? 'data:image/gif;base64,' + dbImg : '/_build/imgs/avatar.jpg'
+      return this.introductions.avatar;
     },
     greeting() {
       return this.introductions.greeting

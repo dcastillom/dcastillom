@@ -1,3 +1,13 @@
 <div class="introduction">
   <h1>{{ lang('sections.introduction') }}</h1>
+
+  <swiper :options="swiperOption" ref="mySwiper">
+    <swiper-slide v-for="(image, index) in images" :key="index">I'm banner {{ image }}</swiper-slide>
+    <div class="swiper-button-prev" slot="button-prev"></div>
+    <div class="swiper-button-next" slot="button-next"></div>
+  </swiper>
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><p>{{ intro }}</p>
 </div>

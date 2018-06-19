@@ -55,8 +55,6 @@
                             </div>
                         </div>
 
-
-
                         <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
                             <label for="avatar" class="col-md-2 control-label">Avatar</label>
                             <div class="col-md-10">
@@ -74,7 +72,7 @@
 
                         <div class="form-group">
                             <div class="col-md-4 col-md-offset-2">
-                                <a class="btn btn-default" href="{{route('experiences')}}">
+                                <a class="btn btn-default" href="{{route('introductions')}}">
                                     Go back
                                 </a>
                                 <button type="submit" class="btn btn-primary">

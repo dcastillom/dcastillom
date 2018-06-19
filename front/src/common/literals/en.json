@@ -1,13 +1,11 @@
 {
-  "langs": {
-    "es": "ES",
-    "en": "EN"
-  },
+  "welcome": "Hello, World!",
+  "name": "dcastillom",
   "home": "Home",
   "phone": "Phone",
   "email": "Email",
   "sections": {
-    "introduction": "Introduction",
+    "introduction": "About me",
     "experience": "Experience",
     "education": "Education",
     "skills": "Skills",

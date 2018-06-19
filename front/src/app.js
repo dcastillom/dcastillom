@@ -10,6 +10,7 @@ import Contact from './components/sections/contact/index.vue'
 import Download from './components/sections/download/index.vue'
 import Bottom from './components/bottom/index.vue'
 
+
 export default {
   computed: {
     activeSection() {

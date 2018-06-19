@@ -4,7 +4,7 @@ import {
 } from '../mutation-types'
 
 export const state = {
-  activeSection: 'home'
+  activeSection: 'introduction'
 }
 
 export const getters = {

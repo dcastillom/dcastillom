@@ -1,8 +1,5 @@
 {
-  "langs": {
-    "es": "ES",
-    "en": "EN"
-  },
+  "welcome": "¡Hola, Mundo!",
   "home": "Inicio",
   "phone": "Teléfono",
   "email": "Email",

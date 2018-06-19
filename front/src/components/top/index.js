@@ -12,7 +12,6 @@ export default {
       this.$store.commit('SET_ACTIVE_SECTION', 'home')
     },
     setLanguage(lang) {
-      console.log('lang', lang)
       this.$store.commit('SET_LANGUAGE', lang)
     }
   }

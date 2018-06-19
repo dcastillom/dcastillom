@@ -44,7 +44,7 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        return view('experiences/new',['langs' => $this->langs]);
+        return view('languages/new',['langs' => $this->langs]);
     }
 
     /**

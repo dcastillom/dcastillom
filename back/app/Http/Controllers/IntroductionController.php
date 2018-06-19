@@ -25,7 +25,6 @@ class IntroductionController extends Controller
     }
 
     public function saveAvatar($file) {
-        //$image = Input::file('avatar');
         $image = $file;
         $filename = time() . '.' . $image->getClientOriginalExtension();
         $path = public_path('upload/img/' . $filename);
@@ -93,12 +92,7 @@ class IntroductionController extends Controller
 
         $introduction['avatar'] = $this->saveAvatar(Input::file('avatar'));
 
-        if ($request->is('introductions/*')) {
-            Introduction::create($introduction);
-            return redirect('/introductions');
-        } else {
-            return Introduction::create($introduction);
-        }
+        return redirect('/introductions');
     }
 
     public function update(Request $request, Introduction $id, File $avatar)
@@ -121,24 +115,14 @@ class IntroductionController extends Controller
 
         $id->update($introduction);
 
-        if ($request->is('introductions/*')) {
-            return redirect('/introductions');
-        } else {
-            return response()->json($$id, 200);
-        }
+        return redirect('/introductions');
     }
 
     public function delete(Introduction $id, Request $request)
     {
         $this->deleteAvatar($id);
-
         $id->delete();
-
-       if ($request->is('introductions/*')) {
-            return redirect('/introductions');
-       } else {
-            return response()->json(null, 204);
-       }
+        return redirect('/introductions');
     }
 
 }

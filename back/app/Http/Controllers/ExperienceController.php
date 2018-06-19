@@ -67,35 +67,18 @@ class ExperienceController extends Controller
             'links' => '',
         ]);
 
-
-        if ($request->is('experiences/*')) {
-            Experience::create($experience);
-            return redirect('/experiences');
-        } else {
-            return Experience::create($experience);
-        }
+        return redirect('/experiences');
     }
 
     public function update(Request $request, Experience $id)
     {
         $id->update($request->all());
-
-        if ($request->is('experiences/*')) {
-            return redirect('/experiences');
-        } else {
-            return response()->json($$id, 200);
-        }
-
+        return redirect('/experiences');
     }
 
     public function delete(Experience $id, Request $request)
     {
         $id->delete();
-
-       if ($request->is('experiences/*')) {
-            return redirect('/experiences');
-       } else {
-            return response()->json(null, 204);
-       }
+        return redirect('/experiences');
     }
 }

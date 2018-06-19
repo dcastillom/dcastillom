@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Database\Query\Builder;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Input;
 use Image;
 use File;
-use Storage;
 
 
 class IntroductionController extends Controller
@@ -22,6 +22,24 @@ class IntroductionController extends Controller
     public function __construct()
     {
         $this->langs = DB::table('languages')->get()->pluck('lang')->unique();
+    }
+
+    public function saveAvatar($file) {
+        //$image = Input::file('avatar');
+        $image = $file;
+        $filename = time() . '.' . $image->getClientOriginalExtension();
+        $path = public_path('upload/img/' . $filename);
+        Image::make($image->getRealPath())->resize(200, 200)->save($path);
+        return $filename;
+    }
+
+    public function deleteAvatar($id) {
+        $image = Introduction::find($id)[0]['avatar'];
+        $image_path = public_path('upload/img/' . $image);
+
+        if (File::exists($image_path)) {
+            File::delete($image_path);
+        }
     }
 
     public function index(Request $request)
@@ -53,7 +71,7 @@ class IntroductionController extends Controller
     public function show(Introduction $id, Request $request)
     {
         if ($request->is('introductions/*')) {
-            return view('introductions/show',['experience'=>Introduction::find($id)->first()]);
+            return view('introductions/show',['introduction'=>Introduction::find($id)->first(), 'langs' => $this->langs]  );
         }
 
         return Introduction::find($id);
@@ -73,13 +91,7 @@ class IntroductionController extends Controller
             'lang' => 'required'
         ]);
 
-        $image = Input::file('avatar');
-        $filename = time() . '.' . $image->getClientOriginalExtension();
-        $path = public_path('upload/img/' . $filename);
-        
-        Image::make($image->getRealPath())->resize(200, 200)->save($path);
-   
-        $introduction['avatar'] = $filename;
+        $introduction['avatar'] = $this->saveAvatar(Input::file('avatar'));
 
         if ($request->is('introductions/*')) {
             Introduction::create($introduction);
@@ -89,27 +101,36 @@ class IntroductionController extends Controller
         }
     }
 
-
-    public function update(Request $request, Introduction $id)
+    public function update(Request $request, Introduction $id, File $avatar)
     {
-        $id->update($request->all());
+
+        $introduction = $this->validate($request, [
+            'greeting' => 'required',
+            'intro' => 'required',
+            'avatar' => 'image',
+            'lang' => 'required'
+        ]);
+
+        if(file_exists($_FILES['avatar']['tmp_name']) && is_uploaded_file($_FILES['avatar']['tmp_name'])) {
+            $this->deleteAvatar($id);
+            $introduction['avatar'] = $this->saveAvatar($request->file('avatar'));
+        } else {
+            $request['avatar'] = $request['oldAvatar'];
+            $introduction['avatar'] = $request['oldAvatar']; 
+        }
+
+        $id->update($introduction);
 
         if ($request->is('introductions/*')) {
             return redirect('/introductions');
         } else {
             return response()->json($$id, 200);
         }
-
     }
 
     public function delete(Introduction $id, Request $request)
     {
-        $image = Introduction::find($id)[0]['avatar'];
-        $image_path = public_path('upload/img/' . $image);
-
-        if (File::exists($image_path)) {
-            File::delete($image_path);
-        }
+        $this->deleteAvatar($id);
 
         $id->delete();
 

@@ -17,8 +17,9 @@
                             <label for="lang" class="col-md-2 control-label">Lang</label>
                             <div class="col-md-2">
                                 <select id="lang" class="form-control" name="lang" >
-                                    <option value="en" @if ($experience->lang == 'en') selected="selected" @endif> en</option>
-                                    <option value="es" @if ($experience->lang == 'es') selected="selected" @endif> es</option>
+                                    @foreach ($langs as $key=>$value)
+                                    <option value="{{$value}}" @if ($experience->lang == $value) selected="selected" @endif> {{ $value }}</option>
+                                    @endforeach
                                 </select>
                                 @if ($errors->has('lang'))
                                     <span class="help-block">

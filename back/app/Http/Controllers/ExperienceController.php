@@ -44,7 +44,7 @@ class ExperienceController extends Controller
     public function show(Experience $id, Request $request)
     {
         if ($request->is('experiences/*')) {
-            return view('experiences/show',['experience'=>Experience::find($id)->first()]);
+            return view('experiences/show',['experience'=>Experience::find($id)->first(), 'langs' => $this->langs]  );
         }
 
         return Experience::find($id);

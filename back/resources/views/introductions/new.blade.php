@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Create introduction</div>
+                <div class="panel-heading">Edit introduction</div>
 
                 <div class="panel-body">
 
@@ -56,9 +56,7 @@
                         <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
                             <label for="avatar" class="col-md-2 control-label">Avatar</label>
                             <div class="col-md-10">
-                                
-                                <input name="avatar" id="avatar" type="file">
-                                
+                                <input type="file" name="avatar" id="avatar">
                                 @if ($errors->has('avatar'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('avatar') }}</strong>

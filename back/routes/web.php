@@ -44,7 +44,15 @@ Route::get('/introductions', 'IntroductionController@index');
 Route::get('/introductions/filter/{lang?}', 'IntroductionController@filter');
 Route::get('/introductions/{id}/delete', ['uses' => 'IntroductionController@delete', 'as' => 'introduction.delete']);
 Route::get('/introductions/{id}/show', ['uses' => 'IntroductionController@show', 'as' => 'introduction.show']);
-Route::get('/introductions/{id}/update', ['uses' => 'IntroductionController@update', 'as' => 'introduction.update']);
+
+// Route::get('/introductions/{id}/update', ['uses' => 'IntroductionController@update', 'as' => 'introduction.update', 'files' => true]);
+
+Route::match(['get', 'post'], '/introductions/{id}/update', [
+    'as' => 'introduction.update',
+    'uses' => 'IntroductionController@update',
+    'files' => true
+]);
+
 Route::get('/introductions', ['uses' => 'IntroductionController@index', 'as' => 'introductions']);
 Route::post('/introductions/store', ['uses' => 'IntroductionController@store', 'as' => 'introduction.store']);
 Route::get('/introductions/create', ['uses' => 'IntroductionController@create', 'as' => 'introduction.create']);

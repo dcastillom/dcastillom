@@ -33,15 +33,6 @@ export default {
     }
   },
   mounted() {
-    // setTimeout(() => {
-    //   this.banners.push('/4.jpg')
-    //   console.log('banners update')
-    // }, 3000)
-    // console.log(
-    //   'This is current swiper instance object', this.mySwiper, 
-    //   'It will slideTo banners 3')
-    // this.mySwiper.slideTo(3, 1000, false)
-    let swiper = 
     this.swiper.slideTo(0, 1000, false)
   }
 }

@@ -58,7 +58,7 @@
                         <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
                             <label for="avatar" class="col-md-2 control-label">Avatar</label>
                             <div class="col-md-10">
-                                <p><img src=" {{ asset('upload/img'). '/' . $introduction->avatar }} "></p>
+                                <p><img src=" {{ asset('upload/avatar'). '/' . $introduction->avatar }} "></p>
                                 <p><input type="file" name="avatar" id="avatar"></p>
                                 <p><input type="hidden" name="oldAvatar" id="oldAvatar" value="{{ $introduction->avatar }}"></p>
 

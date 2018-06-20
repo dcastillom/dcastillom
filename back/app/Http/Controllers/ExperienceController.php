@@ -67,6 +67,8 @@ class ExperienceController extends Controller
             'links' => '',
         ]);
 
+        Experience::create($experience);
+
         return redirect('/experiences');
     }
 

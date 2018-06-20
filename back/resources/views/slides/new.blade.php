@@ -6,11 +6,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Add introduction</div>
+                <div class="panel-heading">Add slide</div>
 
                 <div class="panel-body">
 
-                    <form class="form-horizontal" method="POST" action="{{route('introduction.store')}}" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="POST" action="{{route('slide.store')}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('lang') ? ' has-error' : '' }}">
@@ -29,37 +29,25 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('greeting') ? ' has-error' : '' }}">
-                            <label for="greeting" class="col-md-2 control-label">Greeting</label>
+                        <div class="form-group{{ $errors->has('footnote') ? ' has-error' : '' }}">
+                            <label for="footnote" class="col-md-2 control-label">Footnone</label>
                             <div class="col-md-10">
-                                <textarea id="greeting" type="text" class="form-control" name="greeting" required autofocus></textarea>
-                                @if ($errors->has('greeting'))
+                                <textarea id="footnote" type="text" class="form-control" name="footnote" required autofocus></textarea>
+                                @if ($errors->has('footnote'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('greeting') }}</strong>
+                                        <strong>{{ $errors->first('footnote') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('intro') ? ' has-error' : '' }}">
-                            <label for="intro" class="col-md-2 control-label">Intro</label>
+                        <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
+                            <label for="image" class="col-md-2 control-label">Image</label>
                             <div class="col-md-10">
-                                <textarea id="intro" type="text" class="form-control" name="intro" required autofocus></textarea>
-                                @if ($errors->has('intro'))
+                                <input type="file" name="image" id="image">
+                                @if ($errors->has('image'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('intro') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
-                            <label for="avatar" class="col-md-2 control-label">Avatar</label>
-                            <div class="col-md-10">
-                                <input type="file" name="avatar" id="avatar">
-                                @if ($errors->has('avatar'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('avatar') }}</strong>
+                                        <strong>{{ $errors->first('image') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -67,7 +55,7 @@
 
                         <div class="form-group">
                             <div class="col-md-4 col-md-offset-2">
-                                <a class="btn btn-default" href="{{route('introductions')}}">
+                                <a class="btn btn-default" href="{{route('slides')}}">
                                     Go back
                                 </a>
                                 <button type="submit" class="btn btn-primary">

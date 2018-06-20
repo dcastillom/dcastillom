@@ -36,7 +36,7 @@
                 @foreach($introductions as $introduction)
                 <li class="list-group-item list-group-item-primary">
 
-                    <img src=" {{ asset('upload/img'). '/' . $introduction->avatar }} ">
+                    <img src=" {{ asset('upload/avatar'). '/' . $introduction->avatar }} ">
 
                     <p>{{ $introduction->greeting }}</p>
                     <p>{{ $introduction->intro }}</p>

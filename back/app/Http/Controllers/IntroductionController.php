@@ -27,14 +27,14 @@ class IntroductionController extends Controller
     public function saveAvatar($file) {
         $image = $file;
         $filename = time() . '.' . $image->getClientOriginalExtension();
-        $path = public_path('upload/img/' . $filename);
+        $path = public_path('upload/avatar/' . $filename);
         Image::make($image->getRealPath())->resize(200, 200)->save($path);
         return $filename;
     }
 
     public function deleteAvatar($id) {
         $image = Introduction::find($id)[0]['avatar'];
-        $image_path = public_path('upload/img/' . $image);
+        $image_path = public_path('upload/avatar/' . $image);
 
         if (File::exists($image_path)) {
             File::delete($image_path);
@@ -45,7 +45,7 @@ class IntroductionController extends Controller
     {
 
         $introductions = Introduction::all()->map(function ($introduction) {
-            $introduction['avatar'] = asset('upload/img') . '/' . $introduction['avatar'];
+            $introduction['avatar'] = asset('upload/avatar') . '/' . $introduction['avatar'];
             return $introduction;
         });
 
@@ -91,6 +91,8 @@ class IntroductionController extends Controller
         ]);
 
         $introduction['avatar'] = $this->saveAvatar(Input::file('avatar'));
+
+        Introduction::create($introduction);
 
         return redirect('/introductions');
     }

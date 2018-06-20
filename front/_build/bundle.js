@@ -29848,6 +29848,10 @@ var _introductions = __webpack_require__(169);
 
 var _introductions2 = _interopRequireDefault(_introductions);
 
+var _slides = __webpack_require__(218);
+
+var _slides2 = _interopRequireDefault(_slides);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.use(_vuex2.default);
@@ -29857,7 +29861,8 @@ exports.default = new _vuex2.default.Store({
     language: _language2.default,
     section: _section2.default,
     experiences: _experiences2.default,
-    introductions: _introductions2.default
+    introductions: _introductions2.default,
+    slides: _slides2.default
   }
 });
 
@@ -29880,6 +29885,8 @@ var CLEAR_ACTIVE_SECTION = exports.CLEAR_ACTIVE_SECTION = 'CLEAR_ACTIVE_SECTION'
 
 var SET_EXPERIENCES = exports.SET_EXPERIENCES = 'SET_EXPERIENCES';
 var SET_INTRODUCTIONS = exports.SET_INTRODUCTIONS = 'SET_INTRODUCTIONS';
+
+var SET_SLIDES = exports.SET_SLIDES = 'SET_SLIDES';
 
 /***/ }),
 /* 8 */
@@ -36629,7 +36636,10 @@ function toComment(sourceMap) {
   },
   computed: {
     introductions() {
-      return this.$store.getters.getIntroductions[0] || [];
+      return this.$store.getters.getIntroductions;
+    },
+    slides() {
+      return this.$store.getters.getSlides;
     },
     intro() {
       return this.introductions.intro;
@@ -36637,9 +36647,12 @@ function toComment(sourceMap) {
     swiper() {
       return this.$refs.mySwiper.swiper;
     },
-    images() {
-      return ['/1.jpg', '/2.jpg', '/3.jpg'];
+    pollas() {
+      return 'sss.jpg';
     }
+    // images() {
+    //   return [ '/1.jpg', '/2.jpg', '/3.jpg' ]
+    // }
   },
   mounted() {
     this.swiper.slideTo(0, 1000, false);
@@ -52663,7 +52676,7 @@ exports.default = {
 /* 170 */
 /***/ (function(module, exports) {
 
-module.exports = {"languages":"language","experiences":"experience","introductions":"introduction"}
+module.exports = {"languages":"language","experiences":"experience","introductions":"introduction","slides":"slide"}
 
 /***/ }),
 /* 171 */
@@ -61493,9 +61506,11 @@ var render = function() {
         "swiper",
         { ref: "mySwiper", attrs: { options: _vm.swiperOption } },
         [
-          _vm._l(_vm.images, function(image, index) {
-            return _c("swiper-slide", { key: index }, [
-              _vm._v("I'm banner " + _vm._s(image))
+          _vm._l(_vm.slides, function(slide) {
+            return _c("swiper-slide", [
+              _c("img", { attrs: { src: slide.image, alt: slide.footnote } }),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(slide.footnote))])
             ])
           }),
           _vm._v(" "),
@@ -65186,6 +65201,48 @@ exports.default = [{
     //   name: 'home'
     // }
 }];
+
+/***/ }),
+/* 218 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.mutations = exports.getters = exports.state = undefined;
+
+var _lodash = __webpack_require__(5);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _mutationTypes = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var state = exports.state = {
+  slides: null
+};
+
+var getters = exports.getters = {
+  getSlides: function getSlides(state, store) {
+    return _lodash2.default.filter(state.slides, { 'lang': store.getLanguage });
+  }
+};
+
+var mutations = exports.mutations = _defineProperty({}, _mutationTypes.SET_SLIDES, function (state, data) {
+  state.slides = data;
+});
+
+exports.default = {
+  state: state,
+  mutations: mutations,
+  getters: getters
+};
 
 /***/ })
 /******/ ]);

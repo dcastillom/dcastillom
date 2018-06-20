@@ -77,6 +77,7 @@
                         <li><a href="/introductions">Introductions</a></li>
                         <li><a href="/languages">Languages</a></li>
                         <li><a href="/experiences">Experiences</a></li>
+                        <li><a href="/slides">Slides</a></li>
                     </ul>
 
                     @endif

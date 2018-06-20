@@ -10,13 +10,13 @@ export const state = {
 
 export const getters = {
   getIntroductions: (state, store) => {
-    return _.filter(state.introductions, {'lang': store.getLanguage});
+    return _.filter(state.introductions, {'lang': store.getLanguage})
   }
 }
 
 export const mutations = {
   [SET_INTRODUCTIONS](state, data) {
-     state.introductions = data;
+     state.introductions = data
   }
 }
 

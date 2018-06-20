@@ -20,7 +20,10 @@ export default {
   },
   computed: {
     introductions() {
-      return this.$store.getters.getIntroductions[0] || []
+      return this.$store.getters.getIntroductions
+    },
+    slides() {
+      return this.$store.getters.getSlides
     },
     intro() {
       return this.introductions.intro;
@@ -28,9 +31,12 @@ export default {
     swiper() {
       return this.$refs.mySwiper.swiper
     },
-    images() {
-      return [ '/1.jpg', '/2.jpg', '/3.jpg' ]
+    pollas() {
+      return 'sss.jpg'
     }
+    // images() {
+    //   return [ '/1.jpg', '/2.jpg', '/3.jpg' ]
+    // }
   },
   mounted() {
     this.swiper.slideTo(0, 1000, false)

@@ -65,3 +65,10 @@ Route::get('/experiences/{id}/update', ['uses' => 'ExperienceController@update',
 Route::get('/experiences', ['uses' => 'ExperienceController@index', 'as' => 'experiences']);
 Route::post('/experiences/store', ['uses' => 'ExperienceController@store', 'as' => 'experience.store']);
 Route::get('/experiences/create', ['uses' => 'ExperienceController@create', 'as' => 'experience.create']);
+
+
+Route::get('/slides/{id}/delete', ['uses' => 'SlideController@delete', 'as' => 'slide.delete']);
+Route::get('/slides', ['uses' => 'SlideController@index', 'as' => 'slides']);
+Route::post('/slides/store', ['uses' => 'SlideController@store', 'as' => 'slide.store']);
+Route::get('/slides/create', ['uses' => 'SlideController@create', 'as' => 'slide.create']);
+Route::get('/slides/filter/{lang?}', 'SlideController@filter');

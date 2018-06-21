@@ -19,24 +19,16 @@ export default {
     }
   },
   computed: {
-    introductions() {
-      return this.$store.getters.getIntroductions
-    },
     slides() {
-      return this.$store.getters.getSlides
+      return this.$store.getters.getSlides || []
     },
     intro() {
-      return this.introductions.intro;
+      let intros = this.$store.getters.getIntroductions[0]
+      return !!intros ? intros.intro : null
     },
     swiper() {
       return this.$refs.mySwiper.swiper
-    },
-    pollas() {
-      return 'sss.jpg'
     }
-    // images() {
-    //   return [ '/1.jpg', '/2.jpg', '/3.jpg' ]
-    // }
   },
   mounted() {
     this.swiper.slideTo(0, 1000, false)

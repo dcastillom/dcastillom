@@ -29,7 +29,7 @@ class SlideController extends Controller
         $image = $file;
         $filename = time() . '.' . $image->getClientOriginalExtension();
         $path = public_path('upload/swiper/' . $filename);
-        Image::make($image->getRealPath())->resize(200, 200)->save($path);
+        Image::make($image->getRealPath())->resize(400, 300)->save($path);
         return $filename;
     }
 

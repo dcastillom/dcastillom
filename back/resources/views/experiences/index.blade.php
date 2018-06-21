@@ -16,8 +16,6 @@
 
             <ul class="list-group">
                 <li class="list-group-item list-group-item-primary">
-                    <!-- <span>Experiences</span> -->
-
                 <div class="btn-group" role="group" aria-label="...">
                     <p>Experiences</p>
                     <a class="btn btn-default" href="{{route('experience.create')}}">Add new experience</a>

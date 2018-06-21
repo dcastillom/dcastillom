@@ -16,8 +16,6 @@
 
             <ul class="list-group">
                 <li class="list-group-item list-group-item-primary">
-                    <!-- <span>introductions</span> -->
-
                 <div class="btn-group" role="group" aria-label="...">
                     <p>Introductions</p>
                     <a class="btn btn-default" href="{{route('introduction.create')}}">Add new introduction</a>

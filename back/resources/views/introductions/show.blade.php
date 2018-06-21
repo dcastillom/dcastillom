@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Create introduction</div>
+                <div class="panel-heading">Edit introduction</div>
 
                 <div class="panel-body">
 

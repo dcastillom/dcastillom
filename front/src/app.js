@@ -5,7 +5,6 @@ import Introduction from './components/sections/introduction/index.vue'
 import Experience from './components/sections/experience/index.vue'
 import Education from './components/sections/education/index.vue'
 import Skills from './components/sections/skills/index.vue'
-import Interests from './components/sections/interests/index.vue'
 import Contact from './components/sections/contact/index.vue'
 import Thisweb from './components/sections/thisweb/index.vue'
 import Bottom from './components/bottom/index.vue'
@@ -25,7 +24,6 @@ export default {
     Experience,
     Education,
     Skills,
-    Interests,
     Contact,
     Thisweb,
     Bottom

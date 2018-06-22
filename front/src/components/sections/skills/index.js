@@ -1,37 +1,42 @@
 import Chart from 'chart.js'
 
 export default {
-  data () {
-    return {
-      chartData: {
+
+  methods: {
+    createChart(object) {
+      const ctx = this.$refs.myChart
+      new Chart(ctx, {
+        type: object.type,
+        data: object.data,
+        options: object.options,
+      })
+    },
+    getSkillMap() {
+      let items = this.$store.getters.getSkills || []
+      let skills = []
+      let levels = []
+      let bgColors = []
+      let bdColors = []
+
+      for (var item of items) {
+        skills.push(item.skill)
+        levels.push(item.level)
+        bgColors.push('rgba(54,73,93,.5)')
+        bdColors.push('#36495d')
+      }
+
+      let skillsMap = [skills, levels, bgColors, bdColors]
+      let data = {
         type: 'bar',
         data: {
-          labels: ['HTML', 'CSS', 'JScript', 'Vue.js', 'Angular', 'JQuery', 'Laravel'],
-          datasets: [
-            {
-              label: "Skills",
-              data: [20, 50, 10, 30, 40, 62, 27],
-              backgroundColor: [
-                'rgba(54,73,93,.5)',
-                'rgba(54,73,93,.5)',
-                'rgba(54,73,93,.5)',
-                'rgba(54,73,93,.5)',
-                'rgba(54,73,93,.5)',
-                'rgba(54,73,93,.5)',
-                'rgba(54,73,93,.5)'
-              ],
-              borderColor: [
-                '#36495d',
-                '#36495d',
-                '#36495d',
-                '#36495d',
-                '#36495d',
-                '#36495d',
-                '#36495d',
-              ],
-              borderWidth: 3
-            }
-          ]
+          labels: skillsMap[0] || null,
+          datasets: [{
+            label: this.lang('skills-label'),
+            data: skillsMap[1] || null,
+            backgroundColor: skillsMap[2] || null,
+            borderColor: skillsMap[3] || null,
+            borderWidth: 3
+          }]
         },
         options: {
           responsive: true,
@@ -43,25 +48,20 @@ export default {
                 padding: 25,
               }
             }]
+          },
+          legend: {
+            display: false
           }
         }
       }
-    }
-  },
-  computed: {
 
-  },
-  methods: {
-    createChart() {
-      const ctx = this.$refs.myChart
-      new Chart(ctx, {
-        type: this.chartData.type,
-        data: this.chartData.data,
-        options: this.chartData.options,
-      })
+      return !!items.length ? this.createChart(data) : setTimeout(() => {
+          return this.getSkillMap()
+        }, 1000)
+
     }
   },
   mounted() {
-    this.createChart()
+    this.getSkillMap()
   }
 }

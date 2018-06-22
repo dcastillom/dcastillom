@@ -10,7 +10,7 @@ export const state = {
 
 export const getters = {
   getSlides: (state, store) => {
-    return _.filter(state.slides, {'lang': store.getLanguage});
+    return _.filter(state.slides, {'lang': store.getLanguage})
   }
 }
 

@@ -4,7 +4,7 @@
     <li v-for="experience in experiences">
       <span class="position">{{ experience.position }}</span>
       <span class="company">{{ experience.company }}</span>
-      <span class="years">{{ experience.start | formatDate }} - {{ experience.end | formatDate }}</span>
+      <span class="years">{{ experience.start | formatDate }} - {{ experience.end | formatDate  }}</span>
       <span class="description">{{ experience.description }}</span>
       <a :href="link" class="link" v-for="link in getLinks(experience.links)" target="_blank">{{ link }}</a>
     </li>

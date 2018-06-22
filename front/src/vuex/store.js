@@ -1,12 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
 import language from './modules/language'
 import section from './modules/section'
-
 import experiences from './modules/experiences'
 import introductions from './modules/introductions'
 import slides from './modules/slides'
+import skills from './modules/skills'
 
 Vue.use(Vuex)
 
@@ -16,6 +15,7 @@ export default new Vuex.Store({
     section,
     experiences,
     introductions,
-    slides
+    slides,
+    skills
   }
 })

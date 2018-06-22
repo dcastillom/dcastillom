@@ -8,13 +8,10 @@ export default {
     },
 
     formatDate(str, format = null) {
-      const outputFormat = 'MMMM YYYY'
       const lang = store.getters.getLanguage
-      if (format == null) {
-        return moment(str).lang(lang).format(outputFormat)
-      }
-      return moment(str, format).lang(lang).format(outputFormat)
+      return moment(str, 'DD/MM/YYYY').locale(lang).format(!!format ? format : 'MMMM YYYY')
     },
+
     
     diffForHumans(str) {
       return moment(str).from(moment())

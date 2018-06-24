@@ -1,21 +1,42 @@
 .navigation
   display inline-block
-  line-height 80px
   background color-soft-grey
   box-sizing border-box
   width 100%
   font-size font-small
+  .hidden
+    +below('mobile')
+      display none
   ul
     display table
     color color-dark-grey
     padding 0
     margin auto
+    +below('mobile')
+      background color-dark-grey
+      display block
+      width 100%
     li
       position relative
       display table-cell
       cursor pointer
       padding .75em
+      +below('mobile')
+        padding-left 0
+        margin-left 3em
+        margin-right 3em
+        display block
+        color color-white
+        height 25px
+        border-bottom .5px solid color-soft-grey
+        &:last-of-type
+          border-bottom none
+        &:hover
+          color color-medi-grey
       span
+        line-height 80px
+        +below('mobile')
+          line-height 25px
         &:before
           top 20px
           line-height initial
@@ -25,6 +46,8 @@
           text-align center
           left 0
           right 0
+          +below('mobile')
+            display none
         &.ico-introduction
           &:before
             content "\f2c0"

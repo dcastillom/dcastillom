@@ -7,11 +7,24 @@
   padding 8px
   text-align center
   position relative
+  .ico-hamburger
+    display none
+    position absolute
+    left 8px
+    cursor pointer
+    +below('mobile')
+      display block
+    &:before
+      font-family FontAwesome
+      content "\f0c9"
+    &.displayed
+      &:before
+        content "\f00d"
   .name
     cursor pointer
   .lang-selector
     display table
-    position  absolute
+    position absolute
     top 0
     right 0
     margin 0

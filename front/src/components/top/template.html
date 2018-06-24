@@ -1,4 +1,5 @@
 <div class="top">
+  <span class="ico-hamburger" v-bind:class="{ displayed: menu.visible }" @click="openMenu()">&nbsp;</span>
   <span class="name" @click="goToHome()">{{ lang('home') }}</span>
   <ul class="lang-selector">
     <li v-for="lang in languages" @click="setLanguage(lang.lang)" :class="{ active: language == lang.lang }">

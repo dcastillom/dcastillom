@@ -1,5 +1,5 @@
 <div class="navigation">
-  <ul>
+  <ul v-if="menu.visible">
     <li v-for="(section, code) in lang('sections')" @click="setActiveSection(code)" :class="{ active: activeSection == code }" >
       <span :class="'ico-' + code">{{ section }}</span>
     </li>

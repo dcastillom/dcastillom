@@ -10,7 +10,7 @@ export const state = {
 
 export const getters = {
   getExperiences: (state, store) => {
-    return _.filter(state.experiences, {'lang': store.getLanguage});
+    return _.filter(state.experiences, {'lang': store.getLanguage})
   }
 }
 

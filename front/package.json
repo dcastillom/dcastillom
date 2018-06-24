@@ -46,6 +46,7 @@
     "jszip-utils": "0.0.2",
     "lodash": "^4.17.4",
     "node-fs": "^0.1.7",
+    "rupture": "^0.7.1",
     "superagent": "^3.8.3",
     "vue": "^2.5.3",
     "vue-async-computed": "^3.3.1",

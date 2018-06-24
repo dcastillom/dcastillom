@@ -5,6 +5,9 @@ export default {
     },
     languages() {
       return this.$store.getters.getLanguages
+    },
+    menu() {
+      return this.$store.getters.getMenu
     }
   },
   methods: {
@@ -13,6 +16,9 @@ export default {
     },
     setLanguage(lang) {
       this.$store.commit('SET_LANGUAGE', lang)
+    },
+    openMenu() {
+      this.$store.commit('TOGGLE_MENU')
     }
   }
 }

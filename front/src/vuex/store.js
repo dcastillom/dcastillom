@@ -6,6 +6,7 @@ import experiences from './modules/experiences'
 import introductions from './modules/introductions'
 import slides from './modules/slides'
 import skills from './modules/skills'
+import menu from './modules/menu'
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     experiences,
     introductions,
     slides,
-    skills
+    skills,
+    menu
   }
 })
